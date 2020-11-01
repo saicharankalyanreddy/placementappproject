@@ -1,5 +1,6 @@
 package com.example.ossd_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,9 +14,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Loginactivity extends AppCompatActivity {
 
@@ -24,6 +31,8 @@ public class Loginactivity extends AppCompatActivity {
     TextInputEditText password;
     Button signuppage;
     Button login;
+    FirebaseAuth auth;
+    FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,8 @@ public class Loginactivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         login=findViewById(R.id.login);
         signuppage=findViewById(R.id.signuppage);
+        auth=FirebaseAuth.getInstance();
+        firebaseFirestore=FirebaseFirestore.getInstance();
 
         signuppage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +73,22 @@ public class Loginactivity extends AppCompatActivity {
                     password.requestFocus();
                 }
                 else {
-                    Intent i = new Intent(Loginactivity.this,MainActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(new Intent(i));
-                    finish();
+                    auth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Intent i = new Intent(Loginactivity.this,MainActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(new Intent(i));
+                                finish();
+                            }
+                            else {
+                                Toast.makeText(Loginactivity.this,"Credentials Wrong",Toast.LENGTH_LONG).show();
+                                email.requestFocus();
+                            }
+                        }
+                    });
+
                 }
 
             }

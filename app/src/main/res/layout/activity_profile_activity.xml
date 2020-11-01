@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@drawable/joey"
+                android:src="@drawable/pimg"
                 android:scaleType="centerCrop"/>
             
             <androidx.appcompat.widget.Toolbar

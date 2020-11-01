@@ -127,6 +127,10 @@
         android:padding="10dp"
         android:textColor="@android:color/black" />
 
+
+
+
+
     <Button
         android:id="@+id/signup"
         android:layout_width="150dp"

@@ -18,10 +18,13 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
 
     CardView profile,logout;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         profile = findViewById(R.id.profile);
+        auth=FirebaseAuth.getInstance();
 
         logout=findViewById(R.id.logout);
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                auth.signOut();
                 startActivity(new Intent(MainActivity.this,Loginactivity.class));
                 finish();
             }

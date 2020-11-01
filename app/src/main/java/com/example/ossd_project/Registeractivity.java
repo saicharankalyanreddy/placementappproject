@@ -28,6 +28,7 @@ public class Registeractivity extends AppCompatActivity {
     Spinner sem;
     EditText email,username,cgpa,p,cp;
     FirebaseAuth auth;
+
     FirebaseFirestore firebaseFirestore;
 
 
@@ -108,6 +109,7 @@ public class Registeractivity extends AppCompatActivity {
                     auth.createUserWithEmailAndPassword(email.getText().toString(),p.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             if(task.isSuccessful()){
                                 Toast.makeText(Registeractivity.this,"Complted creating account",Toast.LENGTH_LONG).show();
                                 Student student = new Student(username.getText().toString(),email.getText().toString(),sem.getSelectedItem().toString()
@@ -118,9 +120,11 @@ public class Registeractivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
+                                            ps.dismiss();
                                             Intent i = new Intent(Registeractivity.this,MainActivity.class);
                                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                             startActivity(i);
+                                            finish();
                                         }
 
                                     }
