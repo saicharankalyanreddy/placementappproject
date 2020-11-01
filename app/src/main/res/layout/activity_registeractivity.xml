@@ -75,7 +75,7 @@
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:hint="Cgpa"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:background="@drawable/loginandregister"
             android:padding="10dp"
             android:textColor="@android:color/black" />
@@ -123,12 +123,12 @@
         android:layout_margin="10dp"
         android:background="@drawable/loginandregister"
         android:hint="Confirm password"
-        android:inputType="number"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/signup"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

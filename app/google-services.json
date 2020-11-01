@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "538475962864",
+    "firebase_url": "https://ossd-project.firebaseio.com",
+    "project_id": "ossd-project",
+    "storage_bucket": "ossd-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538475962864:android:2de572d367373e3a937d35",
+        "android_client_info": {
+          "package_name": "com.example.ossd_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538475962864-apcs6elarr71b1dvt25d3gn7fbvu7jdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbrwk21xspK89Bx1cgkbRu9R1aP9WDCb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538475962864-apcs6elarr71b1dvt25d3gn7fbvu7jdi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
