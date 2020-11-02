@@ -15,15 +15,22 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Registeractivity extends AppCompatActivity {
+/* public class Registeractivity extends AppCompatActivity {
     Button loginpage,signup;
     Spinner sem;
     EditText email,username,cgpa,p,cp;
@@ -150,5 +157,105 @@ public class Registeractivity extends AppCompatActivity {
             }
         });
 
+    }
+} */
+public class Registeractivity extends AppCompatActivity {
+    Button loginpage,signup;
+    Spinner sem;
+    EditText email,username,cgpa,p,cp;
+    FirebaseAuth fAuth;
+    boolean valid = true;
+    FirebaseFirestore fstore;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registeractivity);
+
+
+        fAuth=FirebaseAuth.getInstance();
+        fstore=FirebaseFirestore.getInstance();
+
+
+        loginpage=findViewById(R.id.tologinpage); //btn
+        signup=findViewById(R.id.signup); //btn
+        email=findViewById(R.id.email);
+        username=findViewById(R.id.Username);
+        cgpa=findViewById(R.id.Cgpa);
+        p=findViewById(R.id.password);
+        cp=findViewById(R.id.confirmpass);
+
+        sem = findViewById(R.id.semester);
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i=1;i<=8;i++){
+            arrayList.add(i);
+        }
+        ArrayAdapter<Integer> arrayAdapter = new ArrayAdapter<Integer>(Registeractivity.this,
+                android.R.layout.simple_list_item_1,arrayList);
+        sem.setAdapter(arrayAdapter);
+
+       signup.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               checkField(email);
+               checkField(username);
+               checkField(cgpa);
+               checkField(p);
+               checkField(cp);
+
+               if(valid)
+               {
+                   fAuth.createUserWithEmailAndPassword(email.getText().toString(),p.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                       @Override
+                       public void onSuccess(AuthResult authResult) {
+                           FirebaseUser user = fAuth.getCurrentUser();
+                           Toast.makeText(Registeractivity.this,"Account Created",Toast.LENGTH_LONG).show();
+                           DocumentReference df = fstore.collection("students").document(user.getUid());
+                           Map<String,Object> userInfo = new HashMap<>();
+                           userInfo.put("FullName",username.getText().toString());
+                           userInfo.put("StudentEmail",email.getText().toString());
+                           userInfo.put("CGPA",cgpa.getText().toString());
+                           userInfo.put("Sem",sem.getSelectedItem().toString());
+                           //specify access level
+                           userInfo.put("isStudent","1");
+
+                           df.set(userInfo);
+
+
+
+                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                           finish(); //so that the user does not go back to registration page once he is done
+                       }
+                   }).addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           Toast.makeText(Registeractivity.this,"Failed to Create Account",Toast.LENGTH_LONG).show();
+                       }
+                   });
+               }
+           }
+       });
+
+        loginpage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(getApplicationContext(),Loginactivity.class));
+            }
+        });
+
+    }
+
+    public boolean checkField(EditText textField){
+        if(textField.getText().toString().isEmpty()){
+            textField.setError("Error");
+            valid = false;
+        }else {
+            valid = true;
+        }
+
+        return valid;
     }
 }
