@@ -11,7 +11,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -162,7 +165,11 @@ import java.util.Map;
 public class Registeractivity extends AppCompatActivity {
     Button loginpage,signup;
     Spinner sem;
-    EditText email,username,cgpa,p,cp;
+    EditText email,username,cgpa,p,cp,code;
+    RadioButton isStudent,isCIR;
+    TextView sem_text;
+    int flag =0,flag1=0;
+
     FirebaseAuth fAuth;
     boolean valid = true;
     FirebaseFirestore fstore;
@@ -185,7 +192,12 @@ public class Registeractivity extends AppCompatActivity {
         cgpa=findViewById(R.id.Cgpa);
         p=findViewById(R.id.password);
         cp=findViewById(R.id.confirmpass);
+        code = findViewById(R.id.code);
 
+         isStudent = (RadioButton) findViewById(R.id.isStudent);
+         isCIR = (RadioButton) findViewById(R.id.isCIR);
+      RadioGroup radiogrp = (RadioGroup) findViewById(R.id.rg);
+        sem_text = findViewById(R.id.sem_text);
         sem = findViewById(R.id.semester);
 
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -196,13 +208,44 @@ public class Registeractivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,arrayList);
         sem.setAdapter(arrayAdapter);
 
+        radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+                if (isStudent.isChecked() == true) {
+                    flag=1;
+                   code.setVisibility(View.GONE);
+                    cgpa.setVisibility(View.VISIBLE);
+                    sem.setVisibility(View.VISIBLE);
+                    sem_text.setVisibility(View.VISIBLE);
+                }else{
+                    flag=2;
+                    code.setVisibility(View.VISIBLE);
+                   cgpa.setVisibility(View.GONE);
+                   sem.setVisibility(View.GONE);
+                   sem_text.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
        signup.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
 
                checkField(email);
                checkField(username);
-               checkField(cgpa);
+
+               if(flag == 1)
+                   checkField(cgpa);
+               if (flag==2) {
+                   checkField(code);
+              //     if(code.getText().toString() != "0000")
+                   //    code.setError("Error");
+                //  else
+                       flag1=1;
+               }
                checkField(p);
                checkField(cp);
 
@@ -213,20 +256,25 @@ public class Registeractivity extends AppCompatActivity {
                        public void onSuccess(AuthResult authResult) {
                            FirebaseUser user = fAuth.getCurrentUser();
                            Toast.makeText(Registeractivity.this,"Account Created",Toast.LENGTH_LONG).show();
-                           DocumentReference df = fstore.collection("students").document(user.getUid());
+                           DocumentReference df1 = fstore.collection("students").document(user.getUid());
                            Map<String,Object> userInfo = new HashMap<>();
                            userInfo.put("FullName",username.getText().toString());
-                           userInfo.put("StudentEmail",email.getText().toString());
+                           userInfo.put("Email",email.getText().toString());
+
+                           //specify access level
+                           if(flag==1){
+                           userInfo.put("isStudent","1");
                            userInfo.put("CGPA",cgpa.getText().toString());
                            userInfo.put("Sem",sem.getSelectedItem().toString());
-                           //specify access level
-                           userInfo.put("isStudent","1");
-
-                           df.set(userInfo);
-
-
-
-                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                           //DocumentReference df1 = fstore.collection("students").document(user.getUid());
+                           df1.set(userInfo);
+                           }
+                           if(flag==2 && flag1==1) {
+                               userInfo.put("isAdmin", "1");
+                              // DocumentReference df2 = fstore.collection("CIR").document(user.getUid());
+                               df1.set(userInfo);
+                           }
+                           startActivity(new Intent(getApplicationContext(),Loginactivity.class));
                            finish(); //so that the user does not go back to registration page once he is done
                        }
                    }).addOnFailureListener(new OnFailureListener() {

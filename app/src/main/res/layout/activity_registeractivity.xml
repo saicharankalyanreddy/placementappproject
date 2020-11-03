@@ -66,6 +66,31 @@
         android:padding="10dp"
         android:textColor="@android:color/black" />
 
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rg"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/isStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Student" />
+        <RadioButton android:id="@+id/isCIR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Placement Team" />
+    </RadioGroup>
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Admin Code"
+        android:padding="10dp"
+        android:id="@+id/code"
+        android:textColor="@android:color/black"
+        android:inputType="numberDecimal"
+        android:background="@drawable/loginandregister"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -92,7 +117,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="Semester :"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:id="@+id/sem_text"/>
 
             <Spinner
                 android:id="@+id/semester"
