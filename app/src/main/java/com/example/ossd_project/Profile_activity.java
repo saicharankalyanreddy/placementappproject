@@ -44,7 +44,6 @@ public class Profile_activity extends AppCompatActivity {
 
 
 
-
         editprofile=findViewById(R.id.editprofile);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +68,10 @@ public class Profile_activity extends AppCompatActivity {
                 .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        email.setText(value.getString("email"));
-                        un.setText(value.getString("username"));
-                        cg.setText(value.getString("cgpa"));
-                        sem.setText(value.getString("sem"));
+                        email.setText(value.getString("Email"));
+                        un.setText(value.getString("FullName"));
+                        cg.setText(value.getString("CGPA"));
+                        sem.setText(value.getString("Sem"));
                     }
                 });
     }

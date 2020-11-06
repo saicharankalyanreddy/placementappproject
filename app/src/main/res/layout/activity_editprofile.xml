@@ -130,20 +130,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardBackgroundColor="@android:color/holo_blue_light"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="password"
-                    android:textSize="20dp"
-                    android:padding="20dp"
-
-                    android:id="@+id/epassword"/>
-
-            </androidx.cardview.widget.CardView>
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

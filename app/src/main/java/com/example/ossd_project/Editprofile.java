@@ -34,7 +34,6 @@ public class Editprofile extends AppCompatActivity {
 
     FloatingActionButton save;
 
-    TextView password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class Editprofile extends AppCompatActivity {
 
         save = findViewById(R.id.save);
 
-        password=findViewById(R.id.epassword);
+
 
 
         
@@ -76,11 +75,11 @@ public class Editprofile extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Map<String,Object> mm = new HashMap<>();
-                            mm.put("email",email.getText().toString());
-                            mm.put("username",un.getText().toString());
-                            mm.put("sem",sem.getText().toString());
-                            mm.put("cgpa",cg.getText().toString());
-                            mm.put("password",password.getText().toString());
+                            mm.put("Email",email.getText().toString());
+                            mm.put("FullName",un.getText().toString());
+                            mm.put("Sem",sem.getText().toString());
+                            mm.put("CGPA",cg.getText().toString());
+
 
 
 
@@ -122,11 +121,11 @@ public class Editprofile extends AppCompatActivity {
                 .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        email.setText(value.getString("email"));
-                        un.setText(value.getString("username"));
-                        cg.setText(value.getString("cgpa"));
-                        sem.setText(value.getString("sem"));
-                        password.setText(value.getString("password"));
+                        email.setText(value.getString("Email"));
+                        un.setText(value.getString("FullName"));
+                        cg.setText(value.getString("CGPA"));
+                        sem.setText(value.getString("Sem"));
+
                     }
                 });
 
