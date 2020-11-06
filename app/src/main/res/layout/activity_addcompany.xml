@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".addcompany">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/loginandregister"
+            android:drawablePadding="15dp"
+            android:hint="Enter the company name"
+            android:inputType="textPersonName"
+            android:padding="20dp"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cctc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/loginandregister"
+            android:drawablePadding="15dp"
+            android:hint="Enter the ctc in LPA"
+            android:inputType="numberDecimal"
+            android:padding="20dp"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/crole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/loginandregister"
+            android:drawablePadding="15dp"
+            android:hint="Enter the Role"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mincg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/loginandregister"
+            android:drawablePadding="15dp"
+            android:hint="Min eligibility CGPA"
+            android:inputType="numberDecimal"
+            android:padding="20dp"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/intenorfte"
+        android:accessibilityPaneTitle="Select the drive"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Internship"
+            android:id="@+id/intern"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FTE"
+            android:id="@+id/fte"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Internship and FTE"
+            android:id="@+id/internnfte"
+            />
+
+
+    </RadioGroup>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="left"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="250dp"
+            android:background="@drawable/loginandregister"
+            android:layout_height="50dp"
+            android:hint="Deadline date"
+            android:id="@+id/textdate"/>
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Deadline date"
+            android:background="@drawable/textfields"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/buttondate"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="left"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="250dp"
+            android:background="@drawable/loginandregister"
+            android:layout_height="50dp"
+            android:hint="Deadline time"
+
+            android:id="@+id/texttime"/>
+
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Deadline time"
+            android:background="@drawable/textfields"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/buttontime"/>
+
+    </LinearLayout>
+
+
+
+
+    <EditText
+        android:id="@+id/aboutc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:hint="Mention some details about the company(Optional)"
+        android:fontFamily="sans-serif-condensed"
+        android:background="#d3d7b6"
+        android:minLines="2"
+        android:scrollbars="vertical"
+        android:inputType="textMultiLine"
+        />
+
+
+    <EditText
+        android:id="@+id/additionalc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:hint="Any additional information"
+        android:fontFamily="sans-serif-condensed"
+        android:background="#d3d7b6"
+        android:minLines="2"
+        android:scrollbars="vertical"
+        android:inputType="textMultiLine"
+        />
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

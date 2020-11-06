@@ -11,14 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".student_eligible_companies"></activity>
+        <activity
+            android:name=".addcompany"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".authcheck">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <uses-library
@@ -31,19 +33,18 @@
 
         <activity
             android:name=".Editprofile"
-            android:label="@string/title_activity_editprofile">
-        </activity>
-        <activity android:name=".admin_companieslist" />
+            android:label="@string/title_activity_editprofile" />
+        <activity
+            android:name=".admin_companieslist"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".Profile_activity" />
         <activity
             android:name=".Loginactivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".Registeractivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".MainActivity" />
-
     </application>
 
 </manifest>

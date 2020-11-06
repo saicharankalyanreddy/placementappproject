@@ -1,5 +1,6 @@
 package com.example.ossd_project;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -19,12 +20,17 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    CardView profile,logout;
+    CardView profile,logout,eligible;
     FirebaseAuth auth;
+    String sa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,27 @@ public class MainActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
 
         logout=findViewById(R.id.logout);
+        eligible=findViewById(R.id.canapplyfor);
+
+        FirebaseFirestore.getInstance().collection("students").document(auth.getCurrentUser().getUid())
+                .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        sa =value.getString("CGPA");
+
+                    }
+                });
+
+        eligible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,sa,Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(MainActivity.this,student_eligible_companies.class);
+                i.putExtra("cg",sa);
+                startActivity(i);
+            }
+        });
 
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 auth.signOut();
-                startActivity(new Intent(MainActivity.this,Loginactivity.class));
+                Intent i = new Intent(MainActivity.this,Loginactivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 finish();
             }
         });
