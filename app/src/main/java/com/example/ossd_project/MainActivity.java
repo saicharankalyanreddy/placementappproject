@@ -44,19 +44,12 @@ public class MainActivity extends AppCompatActivity {
         logout=findViewById(R.id.logout);
         eligible=findViewById(R.id.canapplyfor);
 
-        FirebaseFirestore.getInstance().collection("students").document(auth.getCurrentUser().getUid())
-                .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        sa =value.getString("CGPA");
-
-                    }
-                });
 
         eligible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,sa,Toast.LENGTH_LONG).show();
+
 
                 Intent i = new Intent(MainActivity.this,student_eligible_companies.class);
                 i.putExtra("cg",sa);
@@ -86,5 +79,19 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseFirestore.getInstance().collection("students").document(auth.getCurrentUser().getUid())
+                .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        sa =value.getString("CGPA");
+
+                    }
+                });
     }
 }

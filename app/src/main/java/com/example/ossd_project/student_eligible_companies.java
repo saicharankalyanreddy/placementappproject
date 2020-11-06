@@ -73,6 +73,12 @@ public class student_eligible_companies extends AppCompatActivity {
         super.onStart();
         adapter.startListening();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
 }
 
 
