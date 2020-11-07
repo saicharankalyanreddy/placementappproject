@@ -14,6 +14,8 @@
         <activity android:name=".students_appliedfor"></activity>
         <activity android:name=".Each_Company_Details" />
         <activity android:name=".student_eligible_companies" />
+        <activity android:name=".applyforc"/>
+        <activity android:name=".Profile_activity"/>
         <activity
             android:name=".addcompany"
             android:theme="@style/Theme.AppCompat.Light" />
@@ -30,7 +32,6 @@
         <activity
             android:name=".admin_companieslist"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".Profile_activity" />
         <activity
             android:name=".Loginactivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
