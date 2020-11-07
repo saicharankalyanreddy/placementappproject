@@ -46,6 +46,8 @@ Button apply;
         other_details = findViewById(R.id.other_details);
         apply = findViewById(R.id.apply);
 
+
+
         String cname = getIntent().getStringExtra("cname");
 
         DocumentReference df = firebaseFirestore.collection("companies").document(cname);
