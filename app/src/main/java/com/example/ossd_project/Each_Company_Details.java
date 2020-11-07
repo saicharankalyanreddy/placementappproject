@@ -3,6 +3,7 @@ package com.example.ossd_project;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +23,6 @@ public class Each_Company_Details extends AppCompatActivity {
 TextView company_name,company_description,company_ctc;
 TextInputLayout job_offer,job_role,other_details;
 Button apply;
-
-
-
 
     FirebaseAuth auth;
     FirebaseFirestore firebaseFirestore;
@@ -48,7 +46,7 @@ Button apply;
 
 
 
-        String cname = getIntent().getStringExtra("cname");
+        final String cname = getIntent().getStringExtra("cname");
 
         DocumentReference df = firebaseFirestore.collection("companies").document(cname);
 
@@ -70,6 +68,10 @@ apply.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Toast.makeText(Each_Company_Details.this, "Applied for Company", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(Each_Company_Details.this,applyforc.class);
+        i.putExtra("cname",cname);
+        startActivity(i);
+
     }
 });
 

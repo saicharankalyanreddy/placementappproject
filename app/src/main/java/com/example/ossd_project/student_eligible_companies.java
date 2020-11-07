@@ -11,17 +11,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
@@ -35,6 +38,8 @@ public class student_eligible_companies extends AppCompatActivity {
     studenteligblec_adapter adapter;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,7 @@ public class student_eligible_companies extends AppCompatActivity {
 
 
 
-        String studentcg = getIntent().getStringExtra("cg");
+        final String studentcg = getIntent().getStringExtra("cg");
 
 
 
@@ -84,7 +89,7 @@ public class student_eligible_companies extends AppCompatActivity {
 
 
 class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,studenteligiblec_vh>{
-    public studenteligblec_adapter.OnItemClickListener listener;
+
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -102,6 +107,18 @@ class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,stude
         holder.dtime.setText(model.getDeadlinetime());
         holder.ddate.setText(model.getDeadlinedate());
 
+
+
+        FirebaseFirestore.getInstance().collection("students").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("companies_appliedfor").document(model.getName()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    holder.alreadyapplied.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,39 +131,31 @@ class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,stude
 
     }
 
+
+
     @NonNull
     @Override
     public studenteligiblec_vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view_item,parent,false);
         return new studenteligiblec_vh(v);
     }
-
-    public interface OnItemClickListener {
-        void onItemClick(DocumentSnapshot documentSnapshot, int position);
-    }
-    public void setOnItemClickListener(studenteligblec_adapter.OnItemClickListener listener) {
-        this.listener = listener;
-    }
 }
 class studenteligiblec_vh extends RecyclerView.ViewHolder{
     TextView cname,ddate,dtime;
+    ImageButton alreadyapplied;
 
     public studenteligiblec_vh(@NonNull View itemView) {
         super(itemView);
 
 
         cname=itemView.findViewById(R.id.comp_name);
+        alreadyapplied=itemView.findViewById(R.id.alreadyapplied);
         ddate=itemView.findViewById(R.id.deadline_date);
         dtime=itemView.findViewById(R.id.deadline_time);
-
     }
 
+
+
+
+
 }
-
-
-
-
-
-
-
-

@@ -74,13 +74,17 @@
 
             <TextView
                 android:id="@+id/deadline_time"
-                android:layout_width="40dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="181dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="96dp"
                 android:text="Time"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton"
                 app:layout_constraintHorizontal_bias="0.055"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/deadline_date" />
 
             <TextView
@@ -93,6 +97,20 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/deadline_time"
                 app:layout_constraintTop_toBottomOf="@+id/deadline_date" />
+
+            <ImageButton
+                android:id="@+id/alreadyapplied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginEnd="27dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/deadline_time"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.947"
+                app:srcCompat="@drawable/ic_baseline_done_all_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

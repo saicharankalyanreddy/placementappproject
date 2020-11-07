@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ossd_project">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminDashboard"></activity>
+        <activity android:name=".students_appliedfor"></activity>
         <activity android:name=".Each_Company_Details" />
         <activity android:name=".student_eligible_companies" />
         <activity
@@ -48,7 +50,5 @@
             android:name="com.google.android.wearable"
             android:required="false" />
     </application>
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>

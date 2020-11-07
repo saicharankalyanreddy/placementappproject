@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
         appliedfor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this,Each_Company_Details.class);
-                in.putExtra("cname","ABC");
+                Intent in = new Intent(MainActivity.this,students_appliedfor.class);
                 startActivity(in);
             }
         });
