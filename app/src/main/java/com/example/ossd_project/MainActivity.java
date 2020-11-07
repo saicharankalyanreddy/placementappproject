@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class MainActivity extends AppCompatActivity {
 
 
-    CardView profile,logout,eligible;
+    CardView profile,logout,eligible,appliedfor;
     FirebaseAuth auth;
     String sa;
 
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         logout=findViewById(R.id.logout);
         eligible=findViewById(R.id.canapplyfor);
+        appliedfor=findViewById(R.id.appliedfor);
 
 
         eligible.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,Profile_activity.class));
+            }
+        });
+        appliedfor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(MainActivity.this,Each_Company_Details.class);
+                in.putExtra("cname","ABC");
+                startActivity(in);
             }
         });
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,7 +84,7 @@ public class student_eligible_companies extends AppCompatActivity {
 
 
 class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,studenteligiblec_vh>{
-
+    public studenteligblec_adapter.OnItemClickListener listener;
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -95,19 +96,36 @@ class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,stude
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull studenteligiblec_vh holder, int position, @NonNull companylist model) {
+    protected void onBindViewHolder(@NonNull final studenteligiblec_vh holder, int position, @NonNull final companylist model) {
 
         holder.cname.setText(model.getName());
         holder.dtime.setText(model.getDeadlinetime());
         holder.ddate.setText(model.getDeadlinedate());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(holder.itemView.getContext(), model.getName(), Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(holder.itemView.getContext(),Each_Company_Details.class);
+                in.putExtra("cname",model.getName());
+                holder.itemView.getContext().startActivity(in);
+            }
+        });
 
     }
 
     @NonNull
     @Override
     public studenteligiblec_vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.companyview,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_view_item,parent,false);
         return new studenteligiblec_vh(v);
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(studenteligblec_adapter.OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
 class studenteligiblec_vh extends RecyclerView.ViewHolder{
@@ -117,13 +135,18 @@ class studenteligiblec_vh extends RecyclerView.ViewHolder{
         super(itemView);
 
 
-        cname=itemView.findViewById(R.id.companyname);
-        ddate=itemView.findViewById(R.id.deadlinedate);
-        dtime=itemView.findViewById(R.id.deadlinetime);
+        cname=itemView.findViewById(R.id.comp_name);
+        ddate=itemView.findViewById(R.id.deadline_date);
+        dtime=itemView.findViewById(R.id.deadline_time);
+
     }
 
-
-
-
-
 }
+
+
+
+
+
+
+
+

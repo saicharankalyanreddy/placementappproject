@@ -58,7 +58,7 @@ public class Editprofile extends AppCompatActivity {
 
 
 
-        
+
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +69,7 @@ public class Editprofile extends AppCompatActivity {
                 p.setTitle("Profile update");
                 p.setMessage("Please wait");
                 p.show();
+
 
                 auth.getCurrentUser().updateEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -84,22 +85,24 @@ public class Editprofile extends AppCompatActivity {
 
 
                             DocumentReference d = firebaseFirestore.collection("students").document(auth.getCurrentUser().getUid());
-                               d.update(mm).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                   @Override
-                                   public void onComplete(@NonNull Task<Void> task) {
-                                       if(task.isSuccessful()){
+                            d.update(mm).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
 
-                                           Toast.makeText(Editprofile.this,"Data updated",Toast.LENGTH_SHORT).show();
-                                           p.dismiss();
-                                       }
-                                       else {
-                                           Toast.makeText(Editprofile.this,"Try again later",Toast.LENGTH_SHORT).show();
-                                           p.dismiss();
+                                        Toast.makeText(Editprofile.this,"Data updated",Toast.LENGTH_SHORT).show();
+                                        p.dismiss();
+                                        finish();
 
-                                       }
-                                   }
+                                    }
+                                    else {
+                                        Toast.makeText(Editprofile.this,"Try again later",Toast.LENGTH_SHORT).show();
+                                        p.dismiss();
 
-                               });
+                                    }
+                                }
+
+                            });
                         }
 
                     }
