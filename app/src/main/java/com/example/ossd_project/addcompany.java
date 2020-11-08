@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -29,8 +30,7 @@ import java.util.Map;
 
 public class addcompany extends AppCompatActivity {
 
-    Button deadlinedate;
-    Button deadlinetime;
+    ImageView deadlinedate,deadlinetime;
 
     RadioGroup iorf;
 

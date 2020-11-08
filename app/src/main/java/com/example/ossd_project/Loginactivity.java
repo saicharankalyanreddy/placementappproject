@@ -114,7 +114,7 @@ public class Loginactivity extends AppCompatActivity {
                     finish();
                 }
                 if(documentSnapshot.getString("isAdmin") != null) {
-                    Intent i = new Intent(Loginactivity.this,admin_companieslist.class);
+                    Intent i = new Intent(Loginactivity.this,AdminDashboard.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(new Intent(i));
                     finish();

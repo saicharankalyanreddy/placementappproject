@@ -142,13 +142,12 @@
             android:hint="Deadline date"
             android:id="@+id/textdate"/>
 
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Deadline date"
-            android:background="@drawable/textfields"
+        <ImageView
+            android:id="@+id/buttondate"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
-            android:id="@+id/buttondate"/>
+            android:src="@drawable/calender_icon" />
 
     </LinearLayout>
 
@@ -174,13 +173,13 @@
 
             android:id="@+id/texttime"/>
 
-        <Button
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Deadline time"
-            android:background="@drawable/textfields"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/buttontime"/>
+        <ImageView
+            android:id="@+id/buttontime"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/clock_icon" />
+
 
     </LinearLayout>
 
