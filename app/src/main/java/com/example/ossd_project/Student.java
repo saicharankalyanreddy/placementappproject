@@ -2,61 +2,52 @@ package com.example.ossd_project;
 
 public class Student {
 
-    String username;
-    String email;
-    String password;
-    String sem;
-    String cgpa;
+    String FullName;
+    String Email;
+    String RegNo;
+    String Resume;
+
 
 
     public Student() {
     }
 
-    public Student(String username, String email, String sem, String cgpa, String password) {
-        this.username = username;
-        this.email = email;
-        this.sem = sem;
-        this.cgpa = cgpa;
-        this.password = password;
+    public Student(String fullName, String email, String regNo, String resume) {
+        FullName = fullName;
+        Email = email;
+        RegNo = regNo;
+        Resume = resume;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFullName() {
+        return FullName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFullName(String fullName) {
+        FullName = fullName;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRegNo() {
+        return RegNo;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRegNo(String regNo) {
+        RegNo = regNo;
     }
 
-    public String getSem() {
-        return sem;
+    public String getResume() {
+        return Resume;
     }
 
-    public void setSem(String sem) {
-        this.sem = sem;
-    }
-
-    public String getCgpa() {
-        return cgpa;
-    }
-
-    public void setCgpa(String cgpa) {
-        this.cgpa = cgpa;
+    public void setResume(String resume) {
+        Resume = resume;
     }
 }

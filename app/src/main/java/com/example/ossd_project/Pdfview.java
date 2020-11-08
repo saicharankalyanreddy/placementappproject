@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-class pdfview extends AppCompatActivity {
+public class Pdfview extends AppCompatActivity {
 
     PDFView pdfView;
 
@@ -31,7 +31,7 @@ class pdfview extends AppCompatActivity {
 
         pp= getIntent().getStringExtra("pdflink");
 
-        LOADURL loadurl = new LOADURL(pdfview.this);
+        LOADURL loadurl = new LOADURL(Pdfview.this);
         loadurl.execute(pp);
 
 
@@ -42,7 +42,7 @@ class pdfview extends AppCompatActivity {
     public class LOADURL extends AsyncTask<String,Void,InputStream>
     {
         private ProgressDialog progressDialog;
-        public LOADURL(pdfview loadPdf) {
+        public LOADURL(Pdfview loadPdf) {
 
             progressDialog = new ProgressDialog(loadPdf);
 

@@ -1,5 +1,6 @@
 package com.example.ossd_project;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,21 @@ public class admincompanylistadapter extends FirestoreRecyclerAdapter<companylis
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull companyviewholder holder, int position, @NonNull companylist model) {
+    protected void onBindViewHolder(@NonNull final companyviewholder holder, int position, @NonNull final companylist model) {
         holder.cname.setText(model.getName());
         holder.dtime.setText(model.getDeadlinetime());
         holder.ddate.setText(model.getDeadlinedate());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(holder.itemView.getContext(),students_who_applied.class);
+                i.putExtra("cn",model.getName());
+                holder.itemView.getContext().startActivity(i);
+
+            }
+        });
 
     }
 

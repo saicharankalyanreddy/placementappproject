@@ -87,7 +87,7 @@ public class Applicationview extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(Applicationview.this,resumesrc,Toast.LENGTH_LONG).show();
 
-                Intent i = new Intent(Applicationview.this,pdfview.class);
+                Intent i = new Intent(Applicationview.this,Pdfview.class);
                 i.putExtra("pdflink",resumesrc);
                 startActivity(i);
 
