@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,6 +40,7 @@ public class applyforc extends AppCompatActivity {
 
     String fileurl="";
     ProgressDialog loading;
+    TextView cn,cd;
 
 
 
@@ -55,11 +57,19 @@ public class applyforc extends AppCompatActivity {
         email=findViewById(R.id.semail);
         resume=findViewById(R.id.resume);
         apply=findViewById(R.id.sapply);
+        cn=findViewById(R.id.name_company);
+        cd=findViewById(R.id.company_description);
+
+
 
         loading = new ProgressDialog(applyforc.this);
 
 
         cname=getIntent().getStringExtra("cname");
+
+
+        cn.setText(cname);
+        cd.setText(getIntent().getStringExtra("cdesc"));
 
 
         resume.setOnClickListener(new View.OnClickListener() {

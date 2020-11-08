@@ -3,23 +3,33 @@
     package="com.example.ossd_project">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Placement App"
+        android:label="Placements app"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".students_appliedfor"></activity>
+
+
+        <activity android:name=".pdfview"/>
+
+        <activity android:name=".Applicationview" />
+        <activity android:name=".students_appliedfor" />
         <activity android:name=".Each_Company_Details" />
         <activity android:name=".student_eligible_companies" />
-        <activity android:name=".applyforc"/>
-        <activity android:name=".Profile_activity"/>
+        <activity android:name=".applyforc" />
+        <activity android:name=".Profile_activity" />
+        <activity android:name=".AdminDashboard"/>
         <activity
             android:name=".addcompany"
             android:theme="@style/Theme.AppCompat.Light" />
-        <activity android:name=".authcheck">
+        <activity android:name=".authcheck"
+            android:label="Placements app"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

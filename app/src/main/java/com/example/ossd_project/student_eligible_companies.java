@@ -115,19 +115,32 @@ class studenteligblec_adapter extends FirestoreRecyclerAdapter<companylist,stude
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
                     holder.alreadyapplied.setVisibility(View.VISIBLE);
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(holder.itemView.getContext(), model.getName(), Toast.LENGTH_SHORT).show();
+                            Intent in = new Intent(holder.itemView.getContext(),Applicationview.class);
+                            in.putExtra("cname",model.getName());
+                            holder.itemView.getContext().startActivity(in);
+                        }
+                    });
+
+                }
+                else {
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(holder.itemView.getContext(), model.getName(), Toast.LENGTH_SHORT).show();
+                            Intent in = new Intent(holder.itemView.getContext(),Each_Company_Details.class);
+                            in.putExtra("cname",model.getName());
+                            holder.itemView.getContext().startActivity(in);
+                        }
+                    });
                 }
             }
         });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(holder.itemView.getContext(), model.getName(), Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(holder.itemView.getContext(),Each_Company_Details.class);
-                in.putExtra("cname",model.getName());
-                holder.itemView.getContext().startActivity(in);
-            }
-        });
+
 
     }
 

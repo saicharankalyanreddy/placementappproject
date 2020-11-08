@@ -56,13 +56,13 @@ public class authcheck extends AppCompatActivity {
 
                     Intent i = new Intent(authcheck.this,MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(new Intent(i));
+                    startActivity(i);
                     finish();
                 }
                 if(documentSnapshot.getString("isAdmin") != null) {
-                    Intent i = new Intent(authcheck.this,admin_companieslist.class);
+                    Intent i = new Intent(authcheck.this,AdminDashboard.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(new Intent(i));
+                    startActivity(i);
                     finish();
                 }
 
